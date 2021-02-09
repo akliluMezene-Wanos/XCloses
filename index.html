@@ -8,14 +8,18 @@
     <title>XClothes</title>
     <script>
         function addClothes() {
-        var clothesCode = window.prompt("Type the Cloth-code");
+        var clothesCode = document.getElementById("clothesCode").value;
         var body = document.getElementById("clothesTableBody");
         var row = document.createElement("tr");
         var cell = document.createElement("td");
         cell.innerHTML = clothesCode;
         row.appendChild(cell);
         body.appendChild(row);
+        document.getElementById("clothesCode").value = "";
      }
+     function cleanInput() {
+        clothesCode = '';
+     } 
     </script>
 </head>
 
@@ -46,11 +50,10 @@
             <input type="text" name="promoAvailability" id="promoAvailability" />
         </div>
         <div style="position: relative; top: 5px;">
-            <input type="button" value="Store Cloth" />
+            <input type="button" value="Store Cloth" onclick="addClothes();" />
         </div>
     </form>
-    <table id="clothesTableBody" border="3"
-        style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
+    <table id="clothesTableBody" border="3" style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
         <thead>
             <th>code</th>
             <th>manufacturer_id</th>
@@ -67,8 +70,7 @@
        
        
     addClothes();
-    window.alert("one more");
-    addClothes();
+    cleanInput()
     </script>
 </body>
 
