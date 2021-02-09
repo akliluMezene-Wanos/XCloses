@@ -6,6 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>XClothes</title>
+    <script>
+        function addClothes() {
+        var clothesCode = window.prompt("Type the Cloth-code");
+        var body = document.getElementById("clothesTableBody");
+        var row = document.createElement("tr");
+        var cell = document.createElement("td");
+        cell.innerHTML = clothesCode;
+        row.appendChild(cell);
+        body.appendChild(row);
+     }
+    </script>
 </head>
 
 <body>
@@ -38,23 +49,27 @@
             <input type="button" value="Store Cloth" />
         </div>
     </form>
-    <table id="clothesTableBody" border="3" style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
+    <table id="clothesTableBody" border="3"
+        style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
         <thead>
-        <th>code</th><th>manufacturer_id</th><th>image_filename</th><th>short_description</th><th>description_more</th><th>promo</th></tr>
+            <th>code</th>
+            <th>manufacturer_id</th>
+            <th>image_filename</th>
+            <th>short_description</th>
+            <th>description_more</th>
+            <th>promo</th>
+            </tr>
         </thead>
         <tbody id="clothesTableBody"></tbody>
-        
+
     </table>
     <script>
-        var clothesCode = window.prompt("Type the Cloth-code");
-          var body = document.getElementById("clothesTableBody");
-          var row = document.createElement("tr");
-          var cell = document.createElement("td");
-          cell.innerHTML = clothesCode;
-          row.appendChild(cell);
-          body.appendChild(row);
+       
+       
+    addClothes();
+    window.alert("one more");
+    addClothes();
     </script>
 </body>
 
 </html>
-
