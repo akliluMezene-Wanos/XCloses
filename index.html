@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>XClothes</title>
 </head>
+
 <body>
-    
+    <form action="">
+        <div>
+            <label>Cloth Code:</label>
+            <input type="text" name="clothesCode" id="clothesCode" />
+        </div>
+        <div>
+            <label>Manufacturer Id:</label>
+            <input type="text" name="manufacturerId" id="manufacturerId" />
+        </div>
+        <div>
+            <label>Image File:</label>
+            <input type="text" name="imageFilename" id="imageFilename" />
+        </div>
+        <div>
+            <label>Short Description:</label>
+            <input type="text" name="shortDescription" id="shortDescription" />
+        </div>
+        <div>
+            <label>More Description:</label>
+            <input type="text" name="descriptionMore" id="descriptionMore" />
+        </div>
+        <div>
+            <label>Promotion Available:</label>
+            <input type="text" name="promoAvailability" id="promoAvailability" />
+        </div>
+        <div style="position: relative; top: 5px;">
+            <input type="button" value="Store Cloth" />
+        </div>
+    </form>
+    <table id="clothesTableBody" border="3" style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
+        <thead>
+        <th>code</th><th>manufacturer_id</th><th>image_filename</th><th>short_description</th><th>description_more</th><th>promo</th></tr>
+        </thead>
+        <tbody id="clothesTableBody"></tbody>
+        
+    </table>
+    <script>
+        var clothesCode = window.prompt("Type the Cloth-code");
+          var body = document.getElementById("clothesTableBody");
+          var row = document.createElement("tr");
+          var cell = document.createElement("td");
+          cell.innerHTML = clothesCode;
+          row.appendChild(cell);
+          body.appendChild(row);
+    </script>
 </body>
+
 </html>
+
