@@ -7,15 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>XClothes</title>
     <script>
-        //let idArr = ["clothesCode", "manufacturerId", "imageFilename", "shortDescrip", "descripMore", "promoYes"];
         function addClothes() {
+            getNewClothes();
+            clothesEntry.sort();
+            diplayTableClothes();
+            resetDataEntryFields();
+           }
+
+        function getNewClothes () {
             var clothesCode = document.getElementById("clothesCode").value;
             clothesEntry.push(clothesCode);
-            clothesEntry.sort();
-
-
+        }
+        
+        function resetDataEntryFields () {
+           //reset form
+           document.getElementById("clothesCode").value = "";
+        }
+        
+        function diplayTableClothes () {
             var body = document.getElementById("clothesTableBody");
-            body.innerHTML = " ";
+            body.innerHTML = " "; //remove previous child elements
 
 
             for (var i = 0; i < clothesEntry.length; i++) {
@@ -25,27 +36,8 @@
                 row.appendChild(cell);
                 body.appendChild(row);
             }
-            //reset form
-            document.getElementById("clothesCode").value = "";
-
-
-            //     for(let j=0; j<7; j++) {
-            //         let row = document.createElement("tr");
-            //         for (let i=0; i<idArr.length; i++) {
-            //        var inputVal = document.getElementById(idArr[i]).value;
-            //        var cell = document.createElement("td");
-            //        cell.innerHTML = inputVal;
-            //        row.appendChild(cell);
-
-            //     }
-            //    // clothesInput.push(row);
-            //    clothesEntry.push(row);
-            //    clothesEntry.sort((a,b) => a[1] - b[1]);
-            //     body.appendChild(clothesEntry[j]);
-
-            //     }
         }
-
+        
         var clothesEntry = [];
 
     </script>
@@ -56,40 +48,17 @@
         <div>
             <label>Cloth Code:</label>
             <input type="text" name="clothesCode" id="clothesCode" />
-            <!-- </div>
-            <label>Manufacturer Id:</label>
-            <input type="text" name="manufacturerId" id="manufacturerId" />
         </div>
-        <div>
-            <label>Image File:</label>
-            <input type="text" name="imageFilename" id="imageFilename" />
+
+        <div style="position: relative; top: 5px;">
+            <input type="button" value="Store Cloth" onclick="addClothes()" />
         </div>
-        <div>
-            <label>Short Description:</label>
-            <input type="text" name="shortDescription" id="shortDescrip" />
-        </div>
-        <div>
-            <label>More Description:</label>
-            <input type="text" name="descriptionMore" id="descriptionMore" />
-        </div>
-        <div>
-            <label>Promotion Available:</label>
-            <input type="text" name="promoAvailability" id="promoYes" /> 
-        </div> -->
-            <div style="position: relative; top: 5px;">
-                <input type="button" value="Store Cloth" onclick="addClothes()" />
-            </div>
     </form>
     <table id="clothesTable" border="3"
         style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
         <thead>
             <tr>
                 <th>code</th>
-                <th>manufacturer_id</th>
-                <th>image_filename</th>
-                <th>short_description</th>
-                <th>description_more</th>
-                <th>promo</th>
             </tr>
         </thead>
         <tbody id="clothesTableBody"></tbody>
