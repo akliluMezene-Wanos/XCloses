@@ -9,19 +9,25 @@
     <script>
         function addClothes() {
             getNewClothes();
-            clothesEntry.sort();
+            clothes.sort();
             diplayTableClothes();
             resetDataEntryFields();
            }
 
         function getNewClothes () {
             var clothesCode = document.getElementById("clothesCode").value;
-            clothesEntry.push(clothesCode);
+            var manufacturerId = document.getElementById("manufacturerId").value;
+            var clothe = {
+                code: clothesCode,
+                manufacturer: manufacturerId
+            };
+            clothes.push(clothe);
         }
-        
+           
         function resetDataEntryFields () {
            //reset form
            document.getElementById("clothesCode").value = "";
+           document.getElementById("manufacturerId ").value = "";
         }
         
         function diplayTableClothes () {
@@ -29,16 +35,22 @@
             body.innerHTML = " "; //remove previous child elements
 
 
-            for (var i = 0; i < clothesEntry.length; i++) {
+            for (var i = 0; i < clothes.length; i++) {
                 var row = document.createElement("tr");
+                
                 var cell = document.createElement("td");
-                cell.innerHTML = clothesEntry[i];
+                cell.innerHTML = clothes[i].code;
+                row.appendChild(cell);
+                body.appendChild(row);
+
+                cell = document.createElement("td");
+                cell.innerHTML = clothes[i].manufacturer;
                 row.appendChild(cell);
                 body.appendChild(row);
             }
         }
         
-        var clothesEntry = [];
+        var clothes = [];
 
     </script>
 </head>
@@ -48,6 +60,10 @@
         <div>
             <label>Cloth Code:</label>
             <input type="text" name="clothesCode" id="clothesCode" />
+        </div>
+        <div>
+            <label>Manufacturer ID:</label>
+            <input type="text" name="manufacturerId" id="manufacturerId" />
         </div>
 
         <div style="position: relative; top: 5px;">
@@ -59,6 +75,7 @@
         <thead>
             <tr>
                 <th>code</th>
+                <th>manufacturerID</th>
             </tr>
         </thead>
         <tbody id="clothesTableBody"></tbody>
