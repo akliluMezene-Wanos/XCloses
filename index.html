@@ -7,19 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>XClothes</title>
     <script>
+        //let idArr = ["clothesCode", "manufacturerId", "imageFilename", "shortDescrip", "descripMore", "promoYes"];
         function addClothes() {
-        var clothesCode = document.getElementById("clothesCode").value;
-        var body = document.getElementById("clothesTableBody");
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
-        cell.innerHTML = clothesCode;
-        row.appendChild(cell);
-        body.appendChild(row);
-        document.getElementById("clothesCode").value = "";
-     }
-     function cleanInput() {
-        clothesCode = '';
-     } 
+            var clothesCode = document.getElementById("clothesCode").value;
+            clothesEntry.push(clothesCode);
+            clothesEntry.sort();
+
+
+            var body = document.getElementById("clothesTableBody");
+            body.innerHTML = " ";
+
+
+            for (var i = 0; i < clothesEntry.length; i++) {
+                var row = document.createElement("tr");
+                var cell = document.createElement("td");
+                cell.innerHTML = clothesEntry[i];
+                row.appendChild(cell);
+                body.appendChild(row);
+            }
+            //reset form
+            document.getElementById("clothesCode").value = "";
+
+
+            //     for(let j=0; j<7; j++) {
+            //         let row = document.createElement("tr");
+            //         for (let i=0; i<idArr.length; i++) {
+            //        var inputVal = document.getElementById(idArr[i]).value;
+            //        var cell = document.createElement("td");
+            //        cell.innerHTML = inputVal;
+            //        row.appendChild(cell);
+
+            //     }
+            //    // clothesInput.push(row);
+            //    clothesEntry.push(row);
+            //    clothesEntry.sort((a,b) => a[1] - b[1]);
+            //     body.appendChild(clothesEntry[j]);
+
+            //     }
+        }
+
+        var clothesEntry = [];
+
     </script>
 </head>
 
@@ -28,8 +56,7 @@
         <div>
             <label>Cloth Code:</label>
             <input type="text" name="clothesCode" id="clothesCode" />
-        </div>
-        <div>
+            <!-- </div>
             <label>Manufacturer Id:</label>
             <input type="text" name="manufacturerId" id="manufacturerId" />
         </div>
@@ -39,7 +66,7 @@
         </div>
         <div>
             <label>Short Description:</label>
-            <input type="text" name="shortDescription" id="shortDescription" />
+            <input type="text" name="shortDescription" id="shortDescrip" />
         </div>
         <div>
             <label>More Description:</label>
@@ -47,30 +74,28 @@
         </div>
         <div>
             <label>Promotion Available:</label>
-            <input type="text" name="promoAvailability" id="promoAvailability" />
-        </div>
-        <div style="position: relative; top: 5px;">
-            <input type="button" value="Store Cloth" onclick="addClothes();" />
-        </div>
+            <input type="text" name="promoAvailability" id="promoYes" /> 
+        </div> -->
+            <div style="position: relative; top: 5px;">
+                <input type="button" value="Store Cloth" onclick="addClothes()" />
+            </div>
     </form>
-    <table id="clothesTableBody" border="3" style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
+    <table id="clothesTable" border="3"
+        style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
         <thead>
-            <th>code</th>
-            <th>manufacturer_id</th>
-            <th>image_filename</th>
-            <th>short_description</th>
-            <th>description_more</th>
-            <th>promo</th>
+            <tr>
+                <th>code</th>
+                <th>manufacturer_id</th>
+                <th>image_filename</th>
+                <th>short_description</th>
+                <th>description_more</th>
+                <th>promo</th>
             </tr>
         </thead>
         <tbody id="clothesTableBody"></tbody>
-
     </table>
     <script>
-       
-       
-    addClothes();
-    cleanInput()
+        addClothes();
     </script>
 </body>
 
