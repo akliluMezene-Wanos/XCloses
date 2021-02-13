@@ -22,16 +22,29 @@
         function addClothes() {
             getNewClothes();
             clothes.sort(compareClothes);
-            diplayTableClothes();
+            displayTableClothes();
             resetDataEntryFields();
            }
 
         function getNewClothes () {
             var clothesCode = document.getElementById("clothesCode").value;
             var manufacturerId = document.getElementById("manufacturerId").value;
+            var imageFilename = document.getElementById("imageFilename").value;
+            var shortDescription = document.getElementById("shortDescription").value;
+            var descriptionMore = document.getElementById("descriptionMore").value;
+            var availablePromo = document.getElementById("availablePromo").value;
+
             var clothe = {
-                code: clothesCode,
-                manufacturer: manufacturerId
+                clothesCode: clothesCode,
+                manufacturerId: manufacturerId,
+                imageFilename: imageFilename,
+                shortDescription: shortDescription,
+                descriptionMore: descriptionMore,
+                availablePromo: availablePromo
+
+
+
+
             };
             clothes.push(clothe);
         }
@@ -40,23 +53,47 @@
            //reset form
            document.getElementById("clothesCode").value = "";
            document.getElementById("manufacturerId").value = "";
+           document.getElementById("imageFilename").value = "";
+           document.getElementById("shortDescription").value = "";
+           document.getElementById("descriptionMore").value = "";
+           document.getElementById("availablePromo").value = "";
         }
         
-        function diplayTableClothes () {
+        function displayTableClothes () {
             var body = document.getElementById("clothesTableBody");
-            body.innerHTML = " "; //remove previous child elements
+            body.innerHTML = ""; //remove previous child elements
 
 
             for (var i = 0; i < clothes.length; i++) {
                 var row = document.createElement("tr");
                 
                 var cell = document.createElement("td");
-                cell.innerHTML = clothes[i].code;
+                cell.innerHTML = clothes[i].clothesCode;
                 row.appendChild(cell);
                 body.appendChild(row);
 
                 cell = document.createElement("td");
-                cell.innerHTML = clothes[i].manufacturer;
+                cell.innerHTML = clothes[i].manufacturerId;
+                row.appendChild(cell);
+                body.appendChild(row);
+
+                cell = document.createElement("td");
+                cell.innerHTML = clothes[i].imageFilename;
+                row.appendChild(cell);
+                body.appendChild(row);
+
+                cell = document.createElement("td");
+                cell.innerHTML = clothes[i].shortDescription;
+                row.appendChild(cell);
+                body.appendChild(row);
+                
+                cell = document.createElement("td");
+                cell.innerHTML = clothes[i].descriptionMore;
+                row.appendChild(cell);
+                body.appendChild(row);
+
+                cell = document.createElement("td");
+                cell.innerHTML = clothes[i].availablePromo;
                 row.appendChild(cell);
                 body.appendChild(row);
             }
@@ -77,6 +114,25 @@
             <label>Manufacturer ID:</label>
             <input type="text" name="manufacturerId" id="manufacturerId" />
         </div>
+        <div>
+            <label>Image-File:</label>
+            <input type="text" name="imageFilename" id="imageFilename" />
+        </div>
+        <div>
+            <label>Short Description:</label>
+            <input type="text" name="shortDescription" id="shortDescription" />
+        </div>
+        <div>
+            <label>Description More:</label>
+            <input type="text" name="descriptionMore" id="descriptionMore" />
+        </div>
+        <div>
+            <label >Promotion-Availablity:</label>
+            <input type="text" name="availablePromo" id="availablePromo" />
+        </div>
+
+    
+        
 
         <div style="position: relative; top: 5px;">
             <input type="button" value="Store Cloth" onclick="addClothes()" />
@@ -88,6 +144,10 @@
             <tr>
                 <th>code</th>
                 <th>manufacturerID</th>
+                <th>Image-File</th>
+                <th>Short-Description</th>
+                <th>Description-More</th>
+                <th>Promotion-Availablity</th>
             </tr>
         </thead>
         <tbody id="clothesTableBody"></tbody>
