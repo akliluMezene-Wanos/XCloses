@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturers</title>
+    <script>
+        
+        function compareManufacturer(a,b) {
+                if(a.manufacturerName < b.manufacturerName) return -1;
+                if(a.manufacturerName > b.manufacturerName) return 1;
+
+                if(a.manufacturerCountry < b.manufacturerCountry) return -1;
+                if(a.manufacturerCountry > b.manufacturerCountry) return 1;
+                
+                return 0;
+
+            }
+        
+        function addManufacturers() {
+            getNewManufacturer();
+            manufacturers.sort(compareManufacturer);
+            displayTableManufacturer();
+            resetDataEntryFields();
+           }
+
+        function getNewManufacturer () {
+            var manufacturerName = document.getElementById("manufacturerName").value;
+            var manufacturerCountry = document.getElementById("manufacturerCountry").value;
+            var photoLink = document.getElementById("photoLink").value;
+            var shortDescription = document.getElementById("shortDescription").value;
+            var descriptionMore = document.getElementById("descriptionMore").value;
+
+            var manufacturer = {
+                manufacturerName: manufacturerName,
+                manufacturerCountry: manufacturerCountry,
+                photoLink: photoLink,
+                shortDescription: shortDescription,
+                descriptionMore: descriptionMore,
+            };
+            
+            manufacturers.push(manufacturer);
+        }
+           
+        function resetDataEntryFields () {
+           //reset form
+           document.getElementById("manufacturerName").value = "";
+           document.getElementById("manufacturerCountry").value = "";
+           document.getElementById("photoLink").value = "";
+           document.getElementById("shortDescription").value = "";
+           document.getElementById("descriptionMore").value = "";
+        }
+        
+        function displayTableManufacturer () {
+            var body = document.getElementById("manufacturerTableBody");
+            body.innerHTML = ""; //remove previous child elements
+
+
+            for (var i = 0; i < manufacturers.length; i++) {
+                var row = document.createElement("tr");
+                
+                var cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].manufacturerName;
+                row.appendChild(cell);
+                body.appendChild(row);
+
+                cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].manufacturerCountry;
+                row.appendChild(cell);
+                body.appendChild(row);
+
+                cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].photoLink;
+                row.appendChild(cell);
+                body.appendChild(row);
+
+                cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].shortDescription;
+                row.appendChild(cell);
+                body.appendChild(row);
+                
+                cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].descriptionMore;
+                row.appendChild(cell);
+                body.appendChild(row);
+            }
+        }
+        
+        var manufacturers = [];
+
+    </script>
+</head>
+<body>
+    <form action="">
+        <div>
+            <label>Manufacturer Name:</label>
+            <input type="text" name="manufacturerName" id="manufacturerName" />
+        </div>
+        <div>
+            <label>Country:</label>
+            <input type="text" name="manufacturerCountry" id="manufacturerCountry" />
+        </div>
+        <div>
+            <label>Photo Link:</label>
+            <input type="text" name="photoLink" id="photoLink" />
+        </div>
+        <div>
+            <label>Short Description:</label>
+            <input type="text" name="shortDescription" id="shortDescription" />
+        </div>
+        <div>
+            <label>Description More:</label>
+            <input type="text" name="descriptionMore" id="descriptionMore" />
+        </div>
+
+        
+        
+        <div style="position: relative; top: 5px;">
+            <input type="button" value="Store Cloth" onclick="addManufacturers()" />
+        </div>
+
+    </form>
+    <table id="manufacturerTable" border="3"
+        style="border-collapse: collapse; position: relative; top: 15px; text-align: center;">
+        <thead>
+            <tr>
+                <th>Manufacturer-Name</th>
+                <th>Country</th>
+                <th>Photo-Link</th>
+                <th>Short-Description</th>
+                <th>Description-More</th>
+            </tr>
+        </thead>
+        <tbody id="manufacturerTableBody"></tbody>
+    </table>
+
+
+
+
+
+
+    <script>
+    addManufacturers();
+    </script>
+</body>
+</html>
