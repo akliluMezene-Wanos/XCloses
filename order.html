@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
     <script>
-        
-        function compareOrder(a,b) {
-                if(a.orderDate < b.orderDate) return -1;
-                if(a.orderDate > b.orderDate) return 1;
 
-                if(a.customerCode < b.customerCode) return -1;
-                if(a.customerCode > b.customerCode) return 1;
-                
-                return 0;
+        function compareOrder(a, b) {
+            if (a.orderDate < b.orderDate) return -1;
+            if (a.orderDate > b.orderDate) return 1;
 
-            }
-        
+            if (a.customerCode < b.customerCode) return -1;
+            if (a.customerCode > b.manufacturerCountry) return 1;
+
+            return 0;
+
+        }
+
         function addOrders() {
             getNewOrder();
             orders.sort(compareOrder);
             displayTableOrder();
             resetDataEntryFields();
-           }
+        }
 
-        function getNewOrder () {
+        function getNewOrder() {
             var orderDate = document.getElementById("orderDate").value;
             var clothId = document.getElementById("clothId").value;
             var quantity = document.getElementById("quantity").value;
@@ -35,28 +36,28 @@
                 orderDate: orderDate,
                 clothId: clothId,
                 quantity: quantity,
-                customerCode: customerCode,
+                customerCode: customerCode
             };
-            
+
             orders.push(order);
         }
-           
-        function resetDataEntryFields () {
-           //reset form
-           document.getElementById("orderDate").value = "";
-           document.getElementById("clothId").value = "";
-           document.getElementById("quantity").value = "";
-           document.getElementById("customerCode").value = "";
+
+        function resetDataEntryFields() {
+            //reset form
+            document.getElementById("orderDate").value = "";
+            document.getElementById("clothId").value = "";
+            document.getElementById("quantity").value = "";
+            document.getElementById("customerCode").value = "";
         }
-        
-        function displayTableOrder () {
+
+        function displayTableOrder() {
             var body = document.getElementById("orderTableBody");
             body.innerHTML = ""; //remove previous child elements
 
 
             for (var i = 0; i < orders.length; i++) {
                 var row = document.createElement("tr");
-                
+
                 var cell = document.createElement("td");
                 cell.innerHTML = orders[i].orderDate;
                 row.appendChild(cell);
@@ -78,32 +79,33 @@
                 body.appendChild(row);
             }
         }
-        
+
         var orders = [];
 
     </script>
 </head>
+
 <body>
     <form action="">
         <div>
-            <label>Order Date:</label>
-            <input type="text" name="manufacturerName" id="orderDate" />
+            <label style="margin: 8px 0;">Order Date:</label>
+            <input type="datetime" name="orderDate" id="orderDate" style="margin: 8px 0;" />
         </div>
         <div>
-            <label>Cloth Id:</label>
-            <input type="text" name="manufacturerCountry" id="clothId" />
+            <label style="margin: 8px 0;">Cloth Id:</label>
+            <input type="text" name="clothId" id="clothId" style="margin: 8px 0;" />
         </div>
         <div>
-            <label>Quantity:</label>
-            <input type="text" name="photoLink" id="quantity" />
+            <label style="margin: 8px 0;">Quantity:</label>
+            <input type="text" name="quantity" id="quantity" style="margin: 8px 0;" />
         </div>
         <div>
-            <label>Customer Code:</label>
-            <input type="text" name="shortDescription" id="customerCode" />
+            <label style="margin: 8px 0;">Customer Code:</label>
+            <input type="text" name="customerCode" id="customerCode" style="margin: 8px 0;" />
         </div>
 
-        
-         <div style="position: relative; top: 5px;">
+
+        <div style="position: relative; top: 5px;">
             <input type="button" value="Store Cloth" onclick="addOrders()" />
         </div>
 
@@ -127,7 +129,37 @@
 
 
     <script>
-    addOrders();
+        var order = {
+            orderDate: "02-20-2020",
+            clothId: "1",
+            quantity: "3",
+            customerCode: "abcd000020"
+        };
+        orders.push(order);
+        order = {
+            orderDate: "02-20-2021",
+            clothId: "2",
+            quantity: "3",
+            customerCode: "efgh000120"
+        };
+        orders.push(order);
+        order = {
+            orderDate: "02-20-2019",
+            clothId: "4",
+            quantity: "3",
+            customerCode: "ijkl000120"
+        };
+        orders.push(order);
+        order = {
+            orderDate: "02-20-2019",
+            clothId: "5",
+            quantity: "5",
+            customerCode: "mnop000400"
+        };
+        orders.push(order);
+        // etc etc etc
+        addOrders();
     </script>
 </body>
+
 </html>
