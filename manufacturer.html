@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manufacturers</title>
     <script>
-        
-        function compareManufacturer(a,b) {
-                if(a.manufacturerName < b.manufacturerName) return -1;
-                if(a.manufacturerName > b.manufacturerName) return 1;
 
-                if(a.manufacturerCountry < b.manufacturerCountry) return -1;
-                if(a.manufacturerCountry > b.manufacturerCountry) return 1;
-                
-                return 0;
+        function compareManufacturer(a, b) {
+            if (a.manufacturerName < b.manufacturerName) return -1;
+            if (a.manufacturerName > b.manufacturerName) return 1;
 
-            }
-        
+            if (a.manufacturerCountry < b.manufacturerCountry) return -1;
+            if (a.manufacturerCountry > b.manufacturerCountry) return 1;
+
+            return 0;
+
+        }
+
         function addManufacturers() {
             getNewManufacturer();
             manufacturers.sort(compareManufacturer);
             displayTableManufacturer();
             resetDataEntryFields();
-           }
+        }
 
-        function getNewManufacturer () {
+        function getNewManufacturer() {
             var manufacturerName = document.getElementById("manufacturerName").value;
             var manufacturerCountry = document.getElementById("manufacturerCountry").value;
             var photoLink = document.getElementById("photoLink").value;
             var shortDescription = document.getElementById("shortDescription").value;
             var descriptionMore = document.getElementById("descriptionMore").value;
 
-            var manufacturer = {
+            let manufacturer = {
                 manufacturerName: manufacturerName,
                 manufacturerCountry: manufacturerCountry,
                 photoLink: photoLink,
                 shortDescription: shortDescription,
-                descriptionMore: descriptionMore,
+                descriptionMore: descriptionMore
             };
-            
+
             manufacturers.push(manufacturer);
         }
-           
-        function resetDataEntryFields () {
-           //reset form
-           document.getElementById("manufacturerName").value = "";
-           document.getElementById("manufacturerCountry").value = "";
-           document.getElementById("photoLink").value = "";
-           document.getElementById("shortDescription").value = "";
-           document.getElementById("descriptionMore").value = "";
+
+        function resetDataEntryFields() {
+            //reset form
+            document.getElementById("manufacturerName").value = "";
+            document.getElementById("manufacturerCountry").value = "";
+            document.getElementById("photoLink").value = "";
+            document.getElementById("shortDescription").value = "";
+            document.getElementById("descriptionMore").value = "";
         }
-        
-        function displayTableManufacturer () {
+
+        function displayTableManufacturer() {
             var body = document.getElementById("manufacturerTableBody");
             body.innerHTML = ""; //remove previous child elements
 
 
             for (var i = 0; i < manufacturers.length; i++) {
                 var row = document.createElement("tr");
-                
+
                 var cell = document.createElement("td");
                 cell.innerHTML = manufacturers[i].manufacturerName;
                 row.appendChild(cell);
@@ -79,18 +80,19 @@
                 cell.innerHTML = manufacturers[i].shortDescription;
                 row.appendChild(cell);
                 body.appendChild(row);
-                
+
                 cell = document.createElement("td");
                 cell.innerHTML = manufacturers[i].descriptionMore;
                 row.appendChild(cell);
                 body.appendChild(row);
             }
         }
-        
+
         var manufacturers = [];
 
     </script>
 </head>
+
 <body>
     <form action="">
         <div>
@@ -103,7 +105,7 @@
         </div>
         <div>
             <label>Photo Link:</label>
-            <input type="text" name="photoLink" id="photoLink" />
+            <input type="url" name="photoLink" id="photoLink" />
         </div>
         <div>
             <label>Short Description:</label>
@@ -114,8 +116,8 @@
             <input type="text" name="descriptionMore" id="descriptionMore" />
         </div>
 
-        
-        
+
+
         <div style="position: relative; top: 5px;">
             <input type="button" value="Store Cloth" onclick="addManufacturers()" />
         </div>
@@ -141,7 +143,24 @@
 
 
     <script>
-    addManufacturers();
+        let manufacturer = {
+            manufacturerName: "CK",
+            manufacturerCountry: "12",
+            photoLink: "http://www.ck.com",
+            shortDescription: "Quality products and creative design company",
+            descriptionMore: "Top design and production company in the world. A US fashion designesr and clothing production company "
+        };
+        manufacturers.push(manufacturer);
+        manufacturer = {
+            manufacturerName: "Addidas",
+            manufacturerCountry: "GRM",
+            photoLink: "http://www.addidas.com",
+            shortDescription: "Sporting and casual dressing design and production company",
+            descriptionMore: "The top leader of prducing different atheletics and sport clothes, shoe and sporting equipemts. The quality of products are assured Gernmany and Europe standards. After Addis belongs to Germany "
+        };
+        manufacturers.push(manufacturer);
+        addManufacturers();
     </script>
 </body>
+
 </html>
