@@ -7,26 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clothes</title>
     <script>
-        
-        function compareClothes(a,b) {
-                if(a.clothesCode < b.clothesCode) return -1;
-                if(a.clothesCode > b.clothesCode) return 1;
 
-                if(a.manufacturerId < b.manufacturerId) return -1;
-                if(a.manufacturerId > b.manufacturerId) return 1;
-                
-                return 0;
+        function compareClothes(a, b) {
+            if (a.clothesCode < b.clothesCode) return -1;
+            if (a.clothesCode > b.clothesCode) return 1;
 
-            }
-        
+            if (a.manufacturerId < b.manufacturerId) return -1;
+            if (a.manufacturerId > b.manufacturerId) return 1;
+
+            return 0;
+
+        }
+
         function addClothes() {
             getNewClothes();
             clothes.sort(compareClothes);
             displayTableClothes();
             resetDataEntryFields();
-           }
+        }
 
-        function getNewClothes () {
+        function getNewClothes() {
             var clothesCode = document.getElementById("clothesCode").value;
             var manufacturerId = document.getElementById("manufacturerId").value;
             var imageFilename = document.getElementById("imageFilename").value;
@@ -34,39 +34,36 @@
             var descriptionMore = document.getElementById("descriptionMore").value;
             var availablePromo = document.getElementById("availablePromo").value;
 
-            var clothe = {
+            let clothe = {
                 clothesCode: clothesCode,
                 manufacturerId: manufacturerId,
                 imageFilename: imageFilename,
                 shortDescription: shortDescription,
                 descriptionMore: descriptionMore,
                 availablePromo: availablePromo
-
-
-
-
             };
+
             clothes.push(clothe);
         }
-           
-        function resetDataEntryFields () {
-           //reset form
-           document.getElementById("clothesCode").value = "";
-           document.getElementById("manufacturerId").value = "";
-           document.getElementById("imageFilename").value = "";
-           document.getElementById("shortDescription").value = "";
-           document.getElementById("descriptionMore").value = "";
-           document.getElementById("availablePromo").value = "";
+
+        function resetDataEntryFields() {
+            //reset form
+            document.getElementById("clothesCode").value = "";
+            document.getElementById("manufacturerId").value = "";
+            document.getElementById("imageFilename").value = "";
+            document.getElementById("shortDescription").value = "";
+            document.getElementById("descriptionMore").value = "";
+            document.getElementById("availablePromo").value = "";
         }
-        
-        function displayTableClothes () {
+
+        function displayTableClothes() {
             var body = document.getElementById("clothesTableBody");
             body.innerHTML = ""; //remove previous child elements
 
 
             for (var i = 0; i < clothes.length; i++) {
                 var row = document.createElement("tr");
-                
+
                 var cell = document.createElement("td");
                 cell.innerHTML = clothes[i].clothesCode;
                 row.appendChild(cell);
@@ -86,7 +83,7 @@
                 cell.innerHTML = clothes[i].shortDescription;
                 row.appendChild(cell);
                 body.appendChild(row);
-                
+
                 cell = document.createElement("td");
                 cell.innerHTML = clothes[i].descriptionMore;
                 row.appendChild(cell);
@@ -98,7 +95,7 @@
                 body.appendChild(row);
             }
         }
-        
+
         var clothes = [];
 
     </script>
@@ -107,32 +104,38 @@
 <body>
     <form action="">
         <div>
-            <label>Cloth Code:</label>
-            <input type="text" name="clothesCode" id="clothesCode" style="position: absolute; right: 75.5%; border-radius: 4px; background-color: gainsboro;" />
+            <label style="border-radius: 4px; background-color: azure;">Cloth Code:</label>
+            <input type="text" name="clothesCode" id="clothesCode"
+                style="margin: 8px 0; border-radius: 4px; background-color: gainsboro;" />
         </div>
         <div>
-            <label>Manufacturer ID:</label>
-            <input type="text" name="manufacturerId" id="manufacturerId" style="position: absolute; right: 75.5%; border-radius: 4px; background-color: gainsboro;;" />
+            <label style="border-radius: 4px; background-color: azure;">Manufacturer ID:</label>
+            <input type="text" name="manufacturerId" id="manufacturerId"
+                style="margin: 8px 0; border-radius: 4px; background-color: gainsboro;" />
         </div>
         <div>
-            <label>Image-File:</label>
-            <input type="text" name="imageFilename" id="imageFilename" style="position: absolute; right: 75.5%; border-radius: 4px; background-color:gainsboro;" />
+            <label style="border-radius: 4px; background-color: azure;">Image-File:</label>
+            <input type="text" name="imageFilename" id="imageFilename"
+                style="margin: 8px 0; border-radius: 4px; background-color: gainsboro;" />
         </div>
         <div>
-            <label>Short Description:</label>
-            <input type="text" name="shortDescription" id="shortDescription" style="position: absolute; right: 75.5%; border-radius: 4px; background-color: gainsboro;" />
+            <label style="border-radius: 4px; background-color: azure;">Short Description:</label>
+            <input type="text" name="shortDescription" id="shortDescription"
+                style="margin: 8px 0; border-radius: 4px; background-color: gainsboro;" />
         </div>
         <div>
-            <label>Description More:</label>
-            <input type="text" name="descriptionMore" id="descriptionMore" style="position: absolute; right: 75.5%; border-radius: 4px; background-color: gainsboro;" />
+            <label style="border-radius: 4px; background-color: azure;">Description More:</label>
+            <input type="text" name="descriptionMore" id="descriptionMore"
+                style="margin: 8px 0; border-radius: 4px; background-color: gainsboro;" />
         </div>
         <div>
-            <label >Promotion-Availablity:</label>
-            <input type="text" name="availablePromo" id="availablePromo" style="position: absolute; right: 75.5%; border-radius: 4px; background-color: gainsboro;" />
+            <label style="border-radius: 4px; background-color: azure;">Promotion-Availablity:</label>
+            <input type="text" name="availablePromo" id="availablePromo"
+                style="margin: 8px 0; border-radius: 4px; background-color: gainsboro;" />
         </div>
 
-    
-        
+
+
 
         <div style="position: relative; top: 5px;">
             <input type="button" value="Store Cloth" onclick="addClothes()" />
@@ -153,6 +156,26 @@
         <tbody id="clothesTableBody"></tbody>
     </table>
     <script>
+        let cloth = {
+            clothesCode: "00001",
+            manufacturerId: "12",
+            imageFilename: "trousers.jpg",
+            shortDescription: "Winter Trousers for men",
+            descriptionMore: "Men Trousers for the winter. The trousers are blahblahblah",
+            availablePromo: "true"
+        };
+        clothes.push(cloth);
+        cloth = {
+            clothesCode: "00002",
+            manufacturerId: "12",
+            imageFilename: "trousers2.jpg",
+            shortDescription: "Winter Trousers for women",
+            descriptionMore: "Women trousers for the winter. The trousers are blahblahblah",
+            availablePromo: "true"
+        };
+        clothes.push(cloth);
+        // etc etc etc
+
         addClothes();
     </script>
 </body>
